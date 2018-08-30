@@ -8,6 +8,7 @@
 
 namespace Src;
 
+use Psr\Http\Message\ResponseInterface;
 
 class HttpClientResponseEntity
 {

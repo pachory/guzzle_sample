@@ -10,9 +10,17 @@ declare(strict_types=1);
 namespace Src;
 
 
-use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Exception\GuzzleException;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\UriInterface;
 
+/**
+ * Interface HttpClientInterface
+ *
+ * @method PromiseInterface getAsync(string|UriInterface $uri, array $options = [])
+ * @package Src
+ */
 interface HttpClientInterface
 {
   /**

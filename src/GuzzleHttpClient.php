@@ -9,8 +9,6 @@ declare(strict_types = 1);
 
 namespace Src;
 
-use GuzzleHttp\Exception\GuzzleException;
-use Psr\Http\Message\UriInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
