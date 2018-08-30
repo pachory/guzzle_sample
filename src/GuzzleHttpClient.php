@@ -47,11 +47,16 @@ class GuzzleHttpClient implements HttpClientInterface
    * @param string|UriInterface $uri     URI object or string.
    * @param array               $options Request options to apply.
    *
-   * @return ResponseInterface
+   * @return HttpClientResponseEntity
    * @throws GuzzleException
    */
-  public function get(string $uri = '', array $options = []) {
-    return $this->client->request('GET', $uri, $options);
+  public function get(string $uri = '', array $options = []): HttpClientResponseEntity {
+    $response = $this->client->request('GET', $uri, $options);
+    return new HttpClientResponseEntity(
+      $response->getStatusCode(),
+      $response->getHeaders(),
+      $response->getBody()->getContents()
+    );
   }
 
   /**
