@@ -10,18 +10,6 @@ use Psr\Http\Message\ResponseInterface;
 $baseUrl = 'http://api.moemoe.tokyo/anime/v1/master/2018/1';
 $httpClient = HttpClientFactory::create();
 
-//$guzzle = new \GuzzleHttp\Client();
-//$promise = $guzzle->requestAsync('GET', 'http://api.moemoe.tokyo/anime/v1/master/2018/1');
-//$promise->then(
-//  function (\Psr\Http\Message\ResponseInterface $res) {
-//    echo $res->getStatusCode() . "\n";
-//  },
-//  function (\GuzzleHttp\Exception\RequestException $e) {
-//    echo $e->getMessage() . "\n";
-//    echo $e->getRequest()->getMethod();
-//  }
-//);
-
 try {
   $response = $httpClient->get($baseUrl);
 //  print_r($response);
@@ -41,6 +29,7 @@ try {
       echo $e->getRequest()->getMethod();
     }
   );
+  $promise->wait();
 } catch (\GuzzleHttp\Exception\GuzzleException $e) {
   echo $e->getMessage();
 }
