@@ -8,13 +8,12 @@
 
 namespace Src;
 
-use Psr\Http\Message\ResponseInterface;
 
 class HttpClientResponseEntity
 {
   public $statusCode = 0;
   public $headers = [];
-  public $body = '';
+  public $body = [];
 
   public function __construct(int $statusCode, array $headers, array $body)
   {

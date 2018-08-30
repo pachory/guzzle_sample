@@ -45,7 +45,6 @@ interface HttpClientInterface
    */
   public function head(string $uri = '', array $options = []);
 
-
   /**
    * Guzzle->Client->put() のラッパー
    *
