@@ -52,11 +52,7 @@ class GuzzleHttpClient implements HttpClientInterface
    */
   public function get(string $uri = '', array $options = []): HttpClientResponseEntity {
     $response = $this->client->request('GET', $uri, $options);
-    return new HttpClientResponseEntity(
-      $response->getStatusCode(),
-      $response->getHeaders(),
-      $response->getBody()->getContents()
-    );
+    return $this->convertToResponseEntity($response);
   }
 
   /**
@@ -69,4 +65,19 @@ class GuzzleHttpClient implements HttpClientInterface
   public function getAsync(string $uri = '', array $options = []) {
     return $this->client->requestAsync('GET', $uri, $options);
   }
+
+  /**
+   * ResponseEntity の構造体へレスポンスの戻り値を変換する
+   *
+   * @param ResponseInterface $response
+   * @return HttpClientResponseEntity
+   */
+  private function convertToResponseEntity(ResponseInterface $response): HttpClientResponseEntity {
+    return new HttpClientResponseEntity(
+      $response->getStatusCode(),
+      $response->getHeaders(),
+      $response->getBody()->getContents()
+    );
+  }
+
 }
