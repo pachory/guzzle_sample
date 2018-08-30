@@ -1,10 +1,11 @@
 <?php
+declare(strict_types = 1);
 require __DIR__ . '/../vendor/autoload.php';
 
-use Src\MyHttpClient;
+use Src\HttpClientFactory;
 
-$baseUrl = 'http://requestbin.fullcontact.com/1cvaiea1/';
-$httpClient = new MyHttpClient();
+$baseUrl = 'http://api.moemoe.tokyo/anime/v1/master/2018/1';
+$httpClient = HttpClientFactory::create();
 
 try {
   $response = $httpClient->get($baseUrl);
