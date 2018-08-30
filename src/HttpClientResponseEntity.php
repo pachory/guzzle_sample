@@ -15,7 +15,7 @@ class HttpClientResponseEntity
   public $headers = [];
   public $body = '';
 
-  public function __construct(int $statusCode, array $headers, string $body)
+  public function __construct(int $statusCode, array $headers, array $body)
   {
     $this->statusCode = $statusCode;
     $this->headers = $headers;

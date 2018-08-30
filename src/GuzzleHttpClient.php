@@ -41,90 +41,36 @@ class GuzzleHttpClient implements HttpClientInterface
     $this->client = new \GuzzleHttp\Client($config);
   }
 
-  /**
-   * Guzzle->Client->get() のラッパー
-   *
-   * @param string|UriInterface $uri     URI object or string.
-   * @param array               $options Request options to apply.
-   *
-   * @return HttpClientResponseEntity
-   * @throws GuzzleException
-   */
   public function get(string $uri = '', array $options = []): HttpClientResponseEntity
   {
     $response = $this->client->request('GET', $uri, $options);
     return $this->convertToResponseEntity($response);
   }
 
-  /**
-   * Guzzle->Client->head() のラッパー
-   *
-   * @param string|UriInterface $uri     URI object or string.
-   * @param array               $options Request options to apply.
-   *
-   * @return HttpClientResponseEntity
-   * @throws GuzzleException
-   */
   public function head(string $uri = '', array $options = []): HttpClientResponseEntity
   {
     $response = $this->client->request('HEAD', $uri, $options);
     return $this->convertToResponseEntity($response);
   }
 
-  /**
-   * Guzzle->Client->put() のラッパー
-   *
-   * @param string|UriInterface $uri     URI object or string.
-   * @param array               $options Request options to apply.
-   *
-   * @return HttpClientResponseEntity
-   * @throws GuzzleException
-   */
   public function put(string $uri = '', array $options = []): HttpClientResponseEntity
   {
     $response = $this->client->request('PUT', $uri, $options);
     return $this->convertToResponseEntity($response);
   }
 
-  /**
-   * Guzzle->Client->post() のラッパー
-   *
-   * @param string|UriInterface $uri     URI object or string.
-   * @param array               $options Request options to apply.
-   *
-   * @return HttpClientResponseEntity
-   * @throws GuzzleException
-   */
   public function post(string $uri = '', array $options = []): HttpClientResponseEntity
   {
     $response = $this->client->request('POST', $uri, $options);
     return $this->convertToResponseEntity($response);
   }
 
-  /**
-   * Guzzle->Client->patch() のラッパー
-   *
-   * @param string|UriInterface $uri     URI object or string.
-   * @param array               $options Request options to apply.
-   *
-   * @return HttpClientResponseEntity
-   * @throws GuzzleException
-   */
   public function patch(string $uri = '', array $options = []): HttpClientResponseEntity
   {
     $response = $this->client->request('PATCH', $uri, $options);
     return $this->convertToResponseEntity($response);
   }
 
-  /**
-   * Guzzle->Client->delete() のラッパー
-   *
-   * @param string|UriInterface $uri     URI object or string.
-   * @param array               $options Request options to apply.
-   *
-   * @return HttpClientResponseEntity
-   * @throws GuzzleException
-   */
   public function delete(string $uri = '', array $options = []): HttpClientResponseEntity
   {
     $response = $this->client->request('DELETE', $uri, $options);
@@ -154,7 +100,7 @@ class GuzzleHttpClient implements HttpClientInterface
     return new HttpClientResponseEntity(
       $response->getStatusCode(),
       $response->getHeaders(),
-      $response->getBody()->getContents()
+      json_decode($response->getBody()->getContents())
     );
   }
 
