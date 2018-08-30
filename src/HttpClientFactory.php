@@ -10,6 +10,12 @@ declare(strict_types = 1);
 namespace Src;
 
 
+/**
+ * HttpClient の Factory クラス
+ *
+ * Class HttpClientFactory
+ * @package Src
+ */
 class HttpClientFactory
 {
   public static function create(array $config = []): HttpClientInterface {
